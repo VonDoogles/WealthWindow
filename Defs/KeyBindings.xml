@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Defs>
+
+	<KeyBindingDef>
+		<category>Game</category>
+		<defName>WealthWindow</defName>
+		<label>Open WealthWindow (Check mod settings for modifier key)</label>
+        <defaultKeyCodeA>Slash</defaultKeyCodeA>
+	</KeyBindingDef>
+
+</Defs>

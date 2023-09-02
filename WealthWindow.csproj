@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug 1.4</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5E0554FA-8311-425C-9D4B-CE94DFD58676}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WealthWindow</RootNamespace>
+    <AssemblyName>WealthWindow</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <OutputPath Condition=" '$(Configuration)' == 'Debug 1.2' ">1.2\Assemblies\</OutputPath>
+    <OutputPath Condition=" '$(Configuration)' == 'Debug 1.3' ">1.3\Assemblies\</OutputPath>
+    <OutputPath Condition=" '$(Configuration)' == 'Debug 1.4' ">1.4\Assemblies\</OutputPath>
+    <OutputPath Condition=" '$(Configuration)' == 'Release 1.2' ">1.2\Assemblies\</OutputPath>
+    <OutputPath Condition=" '$(Configuration)' == 'Release 1.3' ">1.3\Assemblies\</OutputPath>
+    <OutputPath Condition=" '$(Configuration)' == 'Release 1.4' ">1.4\Assemblies\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" $(Configuration.Contains('Debug')) AND $(Platform) == 'AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>portable</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" $(Configuration.Contains('Release')) AND $(Platform) == 'AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DefineConstants Condition="$(Configuration.Contains('1.2'))">$(DefineConstants);RimWorld_1_2</DefineConstants>
+    <DefineConstants Condition="$(Configuration.Contains('1.3'))">$(DefineConstants);RimWorld_1_3</DefineConstants>
+    <DefineConstants Condition="$(Configuration.Contains('1.4'))">$(DefineConstants);RimWorld_1_4</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="$(Configuration.Contains('1.2'))">
+      <ItemGroup>
+        <PackageReference Include="Krafs.Rimworld.Ref" Version="1.2.3062" />
+      </ItemGroup>
+    </When>
+    <When Condition="$(Configuration.Contains('1.3'))">
+      <ItemGroup>
+        <PackageReference Include="Krafs.Rimworld.Ref" Version="1.3.3389" />
+      </ItemGroup>
+    </When>
+    <When Condition="$(Configuration.Contains('1.4'))">
+      <ItemGroup>
+        <PackageReference Include="Krafs.Rimworld.Ref" Version="1.4.3704" />
+      </ItemGroup>
+    </When>
+    <Otherwise />
+  </Choose>
+  <ItemGroup>
+    <PackageReference Include="Lib.Harmony" Version="2.2.2">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Source\ExGUI.cs" />
+    <Compile Include="Source\GUIStyleCache.cs" />
+    <Compile Include="Source\Mod.cs" />
+    <Compile Include="Source\ModSettings.cs" />
+    <Compile Include="Source\Patch_UIRoot_Play.cs" />
+    <Compile Include="Source\WealthWindow.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
